@@ -1,6 +1,6 @@
 ---
 name: decision-capture
-description: When the user wants to extract, review, or maintain project decisions from transcripts, meeting summaries, notes, emails, issue threads, docs, or chat logs. Reads `.agents/project-context.md` first when available, selectively ingests source material only when decision extraction is the task, and writes structured markdown decisions with source references.
+description: When the user wants to extract, review, or maintain project decisions from transcripts, meeting summaries, notes, emails, issue threads, docs, or chat logs. Reads `.agents/projectskills/project-context.md` first when available, selectively ingests source material only when decision extraction is the task, and writes structured markdown decisions with source references.
 metadata:
   version: 0.1.0
 ---
@@ -9,7 +9,7 @@ metadata:
 
 You help users turn messy project source material into a compact, source-linked decision record.
 
-This skill is for decision extraction and decision-log maintenance. It is not for creating broad project context, deriving requirements, or writing tickets. Start with `.agents/project-context.md` when it exists, then selectively read only the source material needed for the decision task.
+This skill is for decision extraction and decision-log maintenance. It is not for creating broad project context, deriving requirements, or writing tickets. Start with `.agents/projectskills/project-context.md` when it exists, then selectively read only the source material needed for the decision task.
 
 ## What this skill does
 
@@ -26,7 +26,7 @@ Use this skill to capture:
 The output is structured markdown, usually at:
 
 ```text
-.agents/decisions.md
+.agents/projectskills/decisions.md
 ```
 
 Do not assume the decision file belongs inside a production code repo. It may live in a project workspace above one or more repos.
@@ -38,7 +38,7 @@ Do not assume the decision file belongs inside a production code repo. It may li
 Look for:
 
 ```text
-.agents/project-context.md
+.agents/projectskills/project-context.md
 ```
 
 If it exists:
@@ -46,7 +46,7 @@ If it exists:
 1. Read it before reviewing decision sources.
 2. Identify source systems, transcript locations, decision locations, review rules, and approval boundaries.
 3. Follow the project’s stated decision location if one exists.
-4. If the project says there is no formal decision log yet, use `.agents/decisions.md` unless the user requests another path.
+4. If the project says there is no formal decision log yet, use `.agents/projectskills/decisions.md` unless the user requests another path.
 
 If it does not exist:
 
@@ -60,7 +60,7 @@ Decision capture may require reading transcripts, but only because this task is 
 
 Use the narrowest useful source set:
 
-1. Existing `.agents/decisions.md`, if present.
+1. Existing `.agents/projectskills/decisions.md`, if present.
 2. User-provided excerpt or meeting summary.
 3. A specific transcript, email thread, doc, issue, or chat link named by the user.
 4. A small batch of source files for a date range or milestone.
@@ -88,7 +88,7 @@ Rules:
 - Keep open questions separate from decisions.
 - Preserve uncertainty instead of smoothing it away.
 
-### Step 4: Write or update `.agents/decisions.md`
+### Step 4: Write or update `.agents/projectskills/decisions.md`
 
 Use this structure:
 
@@ -152,9 +152,9 @@ After writing or updating decisions, summarize:
 
 ## Source handling rules
 
-- Read `.agents/project-context.md` before source material when available.
+- Read `.agents/projectskills/project-context.md` before source material when available.
 - Preserve source links, filenames, transcript timestamps, issue numbers, email subjects, or doc titles when available.
-- Do not paste large transcript excerpts into `.agents/decisions.md`.
+- Do not paste large transcript excerpts into `.agents/projectskills/decisions.md`.
 - Short quotes are allowed only when they materially clarify a decision and are not sensitive.
 - Do not copy private raw transcripts into the project workspace unless the user explicitly asks and the project permits it.
 - Do not treat a transcript as authoritative if later email, issue, or approval notes supersede it.
@@ -163,7 +163,7 @@ After writing or updating decisions, summarize:
 
 ## Output standard
 
-A good `.agents/decisions.md` is:
+A good `.agents/projectskills/decisions.md` is:
 
 - compact enough to read quickly
 - structured enough for later skills to parse
@@ -194,9 +194,9 @@ Formatting rules:
 
 Before finishing:
 
-- [ ] `.agents/project-context.md` was read when available.
+- [ ] `.agents/projectskills/project-context.md` was read when available.
 - [ ] Source set reviewed is explicit.
-- [ ] `.agents/decisions.md` exists or the user declined creation.
+- [ ] `.agents/projectskills/decisions.md` exists or the user declined creation.
 - [ ] Accepted decisions are separate from candidates.
 - [ ] Open questions are separate from decisions.
 - [ ] Source refs are present or marked `TBD`.

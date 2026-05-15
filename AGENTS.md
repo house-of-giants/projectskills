@@ -17,7 +17,7 @@ Skills are intended to work with `.agents/skills/` consumers and be portable acr
 ## Product principles
 
 - Lead with practical project workflows and strictly formatted markdown, not protocol mechanics.
-- `project-context` is the foundation skill. Other skills should read `.agents/project-context.md` before acting.
+- `project-context` is the foundation skill. Other skills should read `.agents/projectskills/project-context.md` before acting.
 - Preserve source references. Do not invent decisions, requirements, owners, or execution evidence.
 - Distinguish candidate decisions from accepted decisions.
 - Keep client/project examples fake or sanitized.

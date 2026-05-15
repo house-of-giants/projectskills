@@ -1,6 +1,6 @@
 # Basic Client Project Example
 
-This is a fake example showing how `project-context` turns a meeting transcript excerpt into a reusable `.agents/project-context.md` scaffold.
+This is a fake example showing how `project-context` turns a meeting transcript excerpt into a reusable `.agents/projectskills/project-context.md` scaffold.
 
 Files:
 
@@ -12,7 +12,7 @@ The example is intentionally small, but it mirrors a common real workflow:
 
 1. Full meeting transcripts or meeting-summary artifacts exist outside the production repo.
 2. `project-context` records where those transcripts live, but does not ingest the whole transcript corpus by default.
-3. A project workspace gets a compact `.agents/project-context.md` file with source locations and operating rules, not a dumped transcript.
+3. A project workspace gets a compact `.agents/projectskills/project-context.md` file with source locations and operating rules, not a dumped transcript.
 4. Later, `decision-capture` can selectively read a transcript when the user asks for decision extraction.
 
 The key point: teams do not need to keep formal decision logs inside their app repository. Project Skills should adapt to wherever source truth already lives — transcripts, email, Linear/Jira, GitHub, docs, CRM notes, or a lightweight project folder.
@@ -21,7 +21,7 @@ One useful local shape:
 
 ```text
 ~/Work/client-portal/
-  .agents/project-context.md
+  .agents/projectskills/project-context.md
   transcripts/2026-05-15-kickoff.md
   app/                 # production git repo
 ```

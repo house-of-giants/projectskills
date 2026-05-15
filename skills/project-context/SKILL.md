@@ -1,13 +1,13 @@
 ---
 name: project-context
-description: When the user wants to create, update, or inspect project context for agent-assisted client/product work. Use when the user mentions project context, client context, decision locations, requirements, source systems, execution tracker, review rules, delivery workflow, or wants to avoid repeating foundational project information across agent tasks. Creates or updates `.agents/project-context.md`, which other Project Skills read first; records transcript locations without ingesting full transcripts by default.
+description: When the user wants to create, update, or inspect project context for agent-assisted client/product work. Use when the user mentions project context, client context, decision locations, requirements, source systems, execution tracker, review rules, delivery workflow, or wants to avoid repeating foundational project information across agent tasks. Creates or updates `.agents/projectskills/project-context.md`, which other Project Skills read first; records transcript locations without ingesting full transcripts by default.
 metadata:
   version: 0.1.0
 ---
 
 # Project Context
 
-You help users create and maintain `.agents/project-context.md`, the foundational context file for a project.
+You help users create and maintain `.agents/projectskills/project-context.md`, the foundational context file for a project.
 
 This file may live in a production repository, but it does not have to. Many projects are better represented as a workspace that contains context, transcripts, notes, and one or more git repos.
 
@@ -35,7 +35,7 @@ This is not a full project management system. It is a compact, strictly formatte
 Look for:
 
 ```text
-.agents/project-context.md
+.agents/projectskills/project-context.md
 ```
 
 If it exists:
@@ -62,19 +62,19 @@ Valid shapes include:
 ```text
 # Context inside the production repo
 repo/
-  .agents/project-context.md
+  .agents/projectskills/project-context.md
   src/
 
 # Project workspace with repo inside
 client-project/
-  .agents/project-context.md
+  .agents/projectskills/project-context.md
   transcripts/
   notes/
   app/                 # git repo
 
 # Project workspace with multiple repos
 client-project/
-  .agents/project-context.md
+  .agents/projectskills/project-context.md
   web-app/             # git repo
   api/                 # git repo
   docs/
@@ -90,7 +90,7 @@ Ask concise questions if needed, but prefer drafting from available source mater
 
 Source budget order:
 
-1. Existing `.agents/project-context.md`, if present.
+1. Existing `.agents/projectskills/project-context.md`, if present.
 2. User-provided project summary or notes.
 3. README / repo metadata / package names / docs index.
 4. Tracker/project names and source-system locations.
@@ -114,7 +114,7 @@ Required sections:
 11. Project vocabulary
 12. Open questions
 
-### Step 3: Write `.agents/project-context.md`
+### Step 3: Write `.agents/projectskills/project-context.md`
 
 Use this structure:
 
@@ -176,7 +176,7 @@ After creating or updating the file, summarize:
 
 ## Output standard
 
-A good `.agents/project-context.md` is:
+A good `.agents/projectskills/project-context.md` is:
 
 - short enough to read quickly
 - specific enough to guide future agent work
@@ -203,14 +203,14 @@ Formatting rules:
 - Duplicating project management tools instead of pointing to them.
 - Writing generic context that could apply to any project.
 - Assuming every team has a committed `/docs/decisions` folder or formal ADR/decision-log process.
-- Dumping raw transcripts into `.agents/project-context.md` instead of extracting stable context and linking to the transcript location.
+- Dumping raw transcripts into `.agents/projectskills/project-context.md` instead of extracting stable context and linking to the transcript location.
 - Burning context on full transcript ingestion when the task only needs source locations and operating rules.
 
 ## Verification checklist
 
 Before finishing:
 
-- [ ] `.agents/project-context.md` exists or the user declined creation.
+- [ ] `.agents/projectskills/project-context.md` exists or the user declined creation.
 - [ ] Source systems are listed.
 - [ ] Decision log location is explicit or marked `TBD`.
 - [ ] Requirement format is explicit or marked `TBD`.
