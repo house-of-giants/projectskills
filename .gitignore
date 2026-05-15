@@ -15,4 +15,4 @@ coverage/
 !.env.example
 
 # Generated Project Skills artifacts in consumer repos
-.agents/projectskills/
+.agents/*.md

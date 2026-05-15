@@ -46,7 +46,7 @@ Then write clear instructions for the agent.
 
 - [ ] Directory name matches `name` exactly.
 - [ ] Description explains when to use the skill.
-- [ ] Skill reads `.agents/projectskills/project-context.md` first when project context matters.
+- [ ] Skill reads `.agents/project-context.md` first when project context matters.
 - [ ] Skill preserves source refs.
 - [ ] Skill avoids inventing decisions, requirements, or execution evidence.
 - [ ] Skill produces a concrete artifact or clearly structured output.
