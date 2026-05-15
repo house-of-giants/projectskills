@@ -1,0 +1,57 @@
+{
+  "skill_name": "decision-capture",
+  "evals": [
+    {
+      "id": "decision-capture-001",
+      "prompt": "Use decision-capture on this transcript excerpt and update the decision log. Jordan says: 'Yes, first milestone should prove request intake and document upload only.' Mira says: 'No billing or payments in v1.' Mira also says: 'Email notifications are probably useful, but let's not decide that today.'",
+      "expected_output": "Should read .agents/project-context.md first if available. Should write or update .agents/decisions.md. Should capture request intake/document upload and no billing/payments as accepted decisions. Should capture email notifications as deferred/open, not accepted. Should preserve the transcript excerpt as the source reference.",
+      "assertions": [
+        "Reads .agents/project-context.md first when available",
+        "Writes or updates .agents/decisions.md",
+        "Separates accepted decisions from deferred/open questions",
+        "Does not treat 'probably useful, not today' as accepted",
+        "Preserves source reference"
+      ],
+      "files": [".agents/project-context.md", "transcripts/kickoff-excerpt.md"]
+    },
+    {
+      "id": "decision-capture-002",
+      "prompt": "Review the latest transcript for decision candidates only. The transcript includes brainstorming about three possible onboarding flows, but nobody approves one. Summarize decision candidates without creating accepted decisions.",
+      "expected_output": "Should classify the onboarding flows as candidate decisions or open questions, not accepted decisions. Should avoid overstating approval. Should identify who needs to confirm the decision if available.",
+      "assertions": [
+        "Does not create accepted decisions from brainstorming",
+        "Uses Candidate or Open status for unapproved options",
+        "Identifies confirmation owner when available",
+        "Preserves uncertainty",
+        "Avoids inventing approval"
+      ],
+      "files": ["transcripts/latest.md"]
+    },
+    {
+      "id": "decision-capture-003",
+      "prompt": "Update .agents/decisions.md from this follow-up email: Jordan confirms that the CRM rebuild is out of scope for v1 and replaces the earlier idea of syncing all customer records.",
+      "expected_output": "Should preserve existing decision IDs. Should add or update an accepted non-goal decision that CRM rebuild is out of scope. Should mark any earlier conflicting customer-record-sync decision as superseded or rejected instead of silently deleting it. Should cite the follow-up email as source.",
+      "assertions": [
+        "Preserves existing IDs",
+        "Captures explicit out-of-scope decision as accepted/rejected non-goal",
+        "Marks conflicting earlier item as superseded or rejected",
+        "Does not silently delete prior decisions",
+        "Cites the follow-up email source"
+      ],
+      "files": [".agents/project-context.md", ".agents/decisions.md", "emails/follow-up.md"]
+    },
+    {
+      "id": "decision-capture-004",
+      "prompt": "Run broad decision discovery across the full transcript folder for this milestone.",
+      "expected_output": "Because the user explicitly asked for broad decision discovery, it is acceptable to inspect the transcript folder. Should state the source set reviewed, avoid dumping raw transcript text, and produce a compact decision log with accepted decisions, candidates, deferred/rejected items, and open questions.",
+      "assertions": [
+        "Allows full transcript review only because the user explicitly requested broad discovery",
+        "States source set reviewed",
+        "Avoids dumping raw transcript text",
+        "Separates accepted/candidate/deferred/open items",
+        "Produces compact structured markdown"
+      ],
+      "files": [".agents/project-context.md", "transcripts/"]
+    }
+  ]
+}

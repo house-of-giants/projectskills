@@ -127,6 +127,12 @@ Project Skills use predictable markdown sections, tables, IDs, statuses, and sou
 
 The goal is simple: keep decisions, requirements, actions, and execution evidence formatted consistently enough to move between agents and tools.
 
+## Skill evals
+
+Each draft skill can include tiny behavior checks under `skills/<skill-name>/evals/evals.json`.
+
+The evals are not a heavyweight test harness yet. They document the behavior the skill must preserve, such as not ingesting full transcripts by default, keeping accepted decisions separate from candidates, and preserving source refs.
+
 ## Contributing
 
 This project is early. Skill requests, examples, and workflow feedback are welcome once the repo is public.

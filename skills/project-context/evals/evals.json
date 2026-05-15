@@ -1,0 +1,45 @@
+{
+  "skill_name": "project-context",
+  "evals": [
+    {
+      "id": "project-context-001",
+      "prompt": "Create project context for this workspace. We have full meeting transcripts in Fathom, a production app repo in ./app, delivery tracking in Linear, and code review in GitHub. Do not read the full transcripts yet.",
+      "expected_output": "Should create or update .agents/project-context.md. Should treat the workspace as the project boundary, not assume ./app is the whole project. Should record Fathom/transcript location as a source system without ingesting full transcripts. Should include Linear and GitHub as source/execution systems. Should mark unknown decision-log location as TBD if not provided.",
+      "assertions": [
+        "Creates or updates .agents/project-context.md",
+        "Does not ingest full transcripts by default",
+        "Records transcript location as a source system",
+        "Treats workspace as broader than production repo",
+        "Lists Linear and GitHub roles",
+        "Marks missing decision-log location as TBD or equivalent"
+      ],
+      "files": []
+    },
+    {
+      "id": "project-context-002",
+      "prompt": "Use project-context for a client project with two repos: web-app and api. Decisions happen in weekly calls and follow-up emails. There is no formal decision log yet.",
+      "expected_output": "Should create a compact .agents/project-context.md that supports multiple repos. Should not create a fake docs/decisions location. Should capture current decision source locations as weekly calls and follow-up emails, while marking canonical decision log as TBD or not yet defined.",
+      "assertions": [
+        "Supports multiple repositories inside one project workspace",
+        "Does not assume a committed docs/decisions folder exists",
+        "Captures calls and emails as current decision source locations",
+        "Marks canonical decision location as TBD or not yet defined",
+        "Keeps output as structured markdown"
+      ],
+      "files": []
+    },
+    {
+      "id": "project-context-003",
+      "prompt": "Update existing project context with this change: Mira now reviews requirements before tickets are finalized. Keep the existing useful context.",
+      "expected_output": "Should read existing .agents/project-context.md first if present, preserve useful existing context, update review and approval rules, and summarize what changed. Should not rewrite unrelated sections unnecessarily.",
+      "assertions": [
+        "Reads existing .agents/project-context.md first when present",
+        "Preserves useful existing context",
+        "Updates review and approval rules",
+        "Summarizes changed sections",
+        "Avoids unrelated rewrites"
+      ],
+      "files": [".agents/project-context.md"]
+    }
+  ]
+}

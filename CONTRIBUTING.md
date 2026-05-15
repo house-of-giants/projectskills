@@ -42,6 +42,15 @@ metadata:
 
 Then write clear instructions for the agent.
 
+Optional but recommended: add a small eval file for behavior that should not regress.
+
+```bash
+mkdir -p skills/your-skill-name/evals
+$EDITOR skills/your-skill-name/evals/evals.json
+```
+
+Keep evals lightweight. They should describe prompts, expected output, assertions, and optional files. Use them to protect important behavior, not to create a heavyweight test suite.
+
 ## Skill quality checklist
 
 - [ ] Directory name matches `name` exactly.
@@ -50,6 +59,7 @@ Then write clear instructions for the agent.
 - [ ] Skill preserves source refs.
 - [ ] Skill avoids inventing decisions, requirements, or execution evidence.
 - [ ] Skill produces a concrete artifact or clearly structured output.
+- [ ] Important behavior has a tiny eval, when useful.
 - [ ] No real client/private data is included.
 - [ ] `./validate-skills.sh` passes.
 
