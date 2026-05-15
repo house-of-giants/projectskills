@@ -1,0 +1,19 @@
+{
+  "name": "projectskills",
+  "owner": {
+    "name": "House of Giants",
+    "url": "https://houseofgiants.com"
+  },
+  "metadata": {
+    "description": "Project skills for AI agents — keep project context intact from meeting notes to requirements, tickets, pull requests, and delivery closeout",
+    "version": "0.1.0",
+    "repository": "https://github.com/house-of-giants/projectskills"
+  },
+  "plugins": [
+    {
+      "name": "project-skills",
+      "description": "Project lifecycle skills for AI agents: project context, decision capture, requirements from decisions, execution trace, PR handoff, and delivery closeout",
+      "source": "./"
+    }
+  ]
+}
