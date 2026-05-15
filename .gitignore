@@ -14,5 +14,5 @@ coverage/
 .env.*
 !.env.example
 
-# Local agent output examples from consumers
-.agents/project-context.md
+# Generated Project Skills artifacts in consumer repos
+.agents/projectskills/

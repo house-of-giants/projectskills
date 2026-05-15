@@ -76,17 +76,17 @@ This repo is private while the first skills are being shaped.
 
 ```bash
 git clone https://github.com/house-of-giants/projectskills.git
-mkdir -p .agents/skills/projectskills
-cp -r projectskills/skills/* .agents/skills/projectskills/
+mkdir -p .agents/skills
+cp -r projectskills/skills/* .agents/skills/
 ```
 
 ### Option 2: Git submodule
 
 ```bash
-git submodule add https://github.com/house-of-giants/projectskills.git .agents/skills/projectskills
+git submodule add https://github.com/house-of-giants/projectskills.git .agents/vendor/projectskills
 ```
 
-Then point your agent at `.agents/skills/projectskills/skills/` or copy selected skills into your agent's skill directory.
+Then point your agent at `.agents/vendor/projectskills/skills/` or copy selected skills into your agent's skill directory.
 
 ### Future install paths
 
