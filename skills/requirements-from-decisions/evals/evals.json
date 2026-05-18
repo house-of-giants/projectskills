@@ -1,0 +1,58 @@
+{
+  "skill_name": "requirements-from-decisions",
+  "evals": [
+    {
+      "id": "requirements-from-decisions-001",
+      "prompt": "Use requirements-from-decisions to create requirements from .agents/decisions.md. Decisions D-001 and D-002 are accepted. C-001 is a candidate. Q-001 is open.",
+      "expected_output": "Should read .agents/project-context.md and .agents/decisions.md when available. Should create or update .agents/requirements.md. Should create committed requirements only from accepted decisions D-001 and D-002. Should not turn C-001 into a committed requirement. Should preserve Q-001 as an open requirement question or blocker if relevant.",
+      "assertions": [
+        "Reads .agents/project-context.md when available",
+        "Reads .agents/decisions.md when available",
+        "Writes or updates .agents/requirements.md",
+        "Uses accepted decisions as source for committed requirements",
+        "Does not convert candidate decisions into committed requirements by default",
+        "Keeps open questions visible"
+      ],
+      "files": [".agents/project-context.md", ".agents/decisions.md"]
+    },
+    {
+      "id": "requirements-from-decisions-002",
+      "prompt": "Turn accepted scope decisions into requirements. D-001 says the first milestone is limited to request intake and document upload. D-002 says no full CRM rebuild. D-003 says billing and payments are out of scope.",
+      "expected_output": "Should create functional requirements for request intake and document upload only. Should capture CRM rebuild and billing/payments as non-goals or constraints, not as future feature requirements. Should cite D-001, D-002, and D-003 as source decisions.",
+      "assertions": [
+        "Creates requirements only for in-scope product behavior",
+        "Captures out-of-scope decisions as non-goals or constraints",
+        "Does not reframe rejected scope as future work",
+        "Preserves source decision IDs",
+        "Keeps output structured as markdown"
+      ],
+      "files": [".agents/decisions.md"]
+    },
+    {
+      "id": "requirements-from-decisions-003",
+      "prompt": "Update existing requirements after D-010 supersedes D-004. Preserve existing requirement IDs where possible.",
+      "expected_output": "Should preserve existing requirement IDs. Should update affected requirements or mark them superseded instead of deleting them silently. Should cite D-010 as the superseding source decision and report what changed.",
+      "assertions": [
+        "Preserves existing requirement IDs",
+        "Marks affected requirements as updated or superseded",
+        "Does not silently delete prior requirements",
+        "Cites superseding decision ID",
+        "Summarizes changed requirements"
+      ],
+      "files": [".agents/project-context.md", ".agents/decisions.md", ".agents/requirements.md"]
+    },
+    {
+      "id": "requirements-from-decisions-004",
+      "prompt": "Draft proposed requirements from candidate decisions too. Make it clear they are not approved yet.",
+      "expected_output": "Because the user explicitly asked to include candidate decisions, proposed requirements may be drafted. They should be marked Draft or Proposed, tied to candidate decision IDs, and separated from committed requirements or clearly labeled as needing confirmation.",
+      "assertions": [
+        "Includes candidate decisions only because explicitly requested",
+        "Marks candidate-derived requirements as Draft or Proposed",
+        "Keeps proposed requirements distinguishable from committed requirements",
+        "Preserves candidate decision IDs",
+        "Identifies confirmation needs"
+      ],
+      "files": [".agents/project-context.md", ".agents/decisions.md"]
+    }
+  ]
+}

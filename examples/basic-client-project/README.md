@@ -7,6 +7,7 @@ Files:
 - `transcript-excerpt.md` — fake source transcript excerpt
 - `project-context.md` — expected output shape
 - `decisions.md` — expected decision-capture output shape
+- `requirements.md` — expected requirements-from-decisions output shape
 
 The example is intentionally small, but it mirrors a common real workflow:
 
@@ -14,6 +15,7 @@ The example is intentionally small, but it mirrors a common real workflow:
 2. `project-context` records where those transcripts live, but does not ingest the whole transcript corpus by default.
 3. A project workspace gets a compact `.agents/project-context.md` file with source locations and operating rules, not a dumped transcript.
 4. Later, `decision-capture` can selectively read a transcript when the user asks for decision extraction.
+5. `requirements-from-decisions` can turn accepted decisions into requirements while leaving candidates and open questions separate.
 
 The key point: teams do not need to keep formal decision logs inside their app repository. Project Skills should adapt to wherever source truth already lives — transcripts, email, Linear/Jira, GitHub, docs, CRM notes, or a lightweight project folder.
 

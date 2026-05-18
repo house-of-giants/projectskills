@@ -65,7 +65,7 @@ decision-capture  requirements-from-   execution-trace
 |---|---:|---|
 | [project-context](skills/project-context/) | v0.1 draft | Create and maintain `.agents/project-context.md`, the project-level context all other skills read first. |
 | [decision-capture](skills/decision-capture/) | v0.1 draft | Extract accepted, candidate, deferred, and rejected decisions from transcripts, docs, emails, issues, and notes. |
-| requirements-from-decisions | planned | Turn accepted decisions into functional requirements with acceptance criteria, non-goals, and source refs. |
+| [requirements-from-decisions](skills/requirements-from-decisions/) | v0.1 draft | Turn accepted decisions into functional requirements with acceptance criteria, non-goals, and source refs. |
 | execution-trace | planned | Link requirements to tickets, PRs, commits, releases, and verification evidence. |
 
 ## Installation
@@ -119,6 +119,12 @@ To extract decisions from a named source:
 
 ```text
 Use decision-capture on this transcript excerpt and update .agents/decisions.md. Keep accepted decisions separate from candidates and open questions.
+```
+
+To draft requirements from accepted decisions:
+
+```text
+Use requirements-from-decisions to create .agents/requirements.md from .agents/decisions.md. Use accepted decisions only by default and keep candidates/open questions separate.
 ```
 
 ## Structured markdown, not another app
