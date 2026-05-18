@@ -1,6 +1,6 @@
 # Project Skills for AI Agents
 
-[![Skills](https://skills.sh/api/badge/house-of-giants/projectskills)](https://skills.sh/house-of-giants/projectskills)
+[![Skills](https://skills.sh/b/house-of-giants/projectskills)](https://skills.sh/house-of-giants/projectskills)
 
 Install with `npx skills add house-of-giants/projectskills`.
 
