@@ -66,7 +66,7 @@ decision-capture  requirements-from-   execution-trace
 | [project-context](skills/project-context/) | v0.1 draft | Create and maintain `.agents/project-context.md`, the project-level context all other skills read first. |
 | [decision-capture](skills/decision-capture/) | v0.1 draft | Extract accepted, candidate, deferred, and rejected decisions from transcripts, docs, emails, issues, and notes. |
 | [requirements-from-decisions](skills/requirements-from-decisions/) | v0.1 draft | Turn accepted decisions into functional requirements with acceptance criteria, non-goals, and source refs. |
-| execution-trace | planned | Link requirements to tickets, PRs, commits, releases, and verification evidence. |
+| [execution-trace](skills/execution-trace/) | v0.1 draft | Link requirements to tickets, PRs, commits, releases, and verification evidence without overstating completion. |
 
 ## Installation
 
@@ -125,6 +125,12 @@ To draft requirements from accepted decisions:
 
 ```text
 Use requirements-from-decisions to create .agents/requirements.md from .agents/decisions.md. Use accepted decisions only by default and keep candidates/open questions separate.
+```
+
+To trace delivery evidence:
+
+```text
+Use execution-trace to create .agents/execution-trace.md from .agents/requirements.md. Link tickets, PRs, commits, checks, and review evidence without claiming completion unless evidence exists.
 ```
 
 ## Structured markdown, not another app

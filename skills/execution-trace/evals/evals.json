@@ -1,0 +1,58 @@
+{
+  "skill_name": "execution-trace",
+  "evals": [
+    {
+      "id": "execution-trace-001",
+      "prompt": "Create an execution trace for the current project. .agents/requirements.md has REQ-001 and REQ-002. No tickets or PRs have been linked yet.",
+      "expected_output": "Should read .agents/project-context.md and .agents/requirements.md when available. Should create or update .agents/execution-trace.md. Should preserve REQ-001 and REQ-002. Should mark requirements as Unlinked rather than complete. Should not invent ticket IDs, PRs, commits, checks, or review outcomes.",
+      "assertions": [
+        "Reads .agents/project-context.md when available",
+        "Reads .agents/requirements.md when available",
+        "Writes or updates .agents/execution-trace.md",
+        "Preserves requirement IDs",
+        "Marks missing execution artifacts as Unlinked",
+        "Does not invent tickets, PRs, commits, checks, or reviews"
+      ],
+      "files": [".agents/project-context.md", ".agents/requirements.md"]
+    },
+    {
+      "id": "execution-trace-002",
+      "prompt": "Update execution trace: REQ-001 has Linear issue LNR-123 and PR #45 merged, but no QA or client review evidence yet.",
+      "expected_output": "Should link LNR-123 and PR #45 to REQ-001. Should not mark REQ-001 as accepted or complete. Should use a status like Implemented / pending verification or Needs verification. Should identify missing QA/client review evidence as a gap.",
+      "assertions": [
+        "Links tracker and PR evidence to the requirement",
+        "Does not equate merged PR with acceptance",
+        "Marks verification/review as missing",
+        "Creates or updates a gap for missing QA/client review",
+        "Preserves REQ-001"
+      ],
+      "files": [".agents/project-context.md", ".agents/requirements.md", ".agents/execution-trace.md"]
+    },
+    {
+      "id": "execution-trace-003",
+      "prompt": "Trace REQ-002. It is blocked by RQ-001 and RQ-002 in .agents/requirements.md.",
+      "expected_output": "Should mark REQ-002 as Blocked. Should cite RQ-001 and RQ-002 as blockers. Should not create fake implementation evidence. Should include the blocker in Blockers / gaps.",
+      "assertions": [
+        "Marks requirement as Blocked",
+        "Cites open requirement question IDs",
+        "Does not invent implementation evidence",
+        "Adds visible blocker/gap rows",
+        "Preserves requirement ID"
+      ],
+      "files": [".agents/project-context.md", ".agents/requirements.md"]
+    },
+    {
+      "id": "execution-trace-004",
+      "prompt": "Check that v1 implementation work respects non-goals NG-001 and NG-002. NG-001 says no CRM rebuild; NG-002 says no billing/payments.",
+      "expected_output": "Should treat NG-001 and NG-002 as scope guards, not implementation tasks. Should create or update scope guard rows. Should report whether evidence exists that tickets/PRs stayed within those guardrails, or mark evidence as TBD if not available.",
+      "assertions": [
+        "Treats non-goals as scope guards",
+        "Does not create implementation tasks for non-goals",
+        "Checks or records evidence for scope compliance",
+        "Marks missing evidence as TBD rather than inventing it",
+        "Preserves non-goal IDs"
+      ],
+      "files": [".agents/project-context.md", ".agents/requirements.md", ".agents/execution-trace.md"]
+    }
+  ]
+}
