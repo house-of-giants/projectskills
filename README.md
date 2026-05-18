@@ -1,5 +1,7 @@
 # Project Skills for AI Agents
 
+Install with `npx skills add house-of-giants/projectskills`.
+
 A collection of AI agent skills for keeping project context intact from meeting notes to requirements, tickets, pull requests, and delivery closeout.
 
 Built by [House of Giants](https://houseofgiants.com), a product engineering studio using these patterns in real client work.
@@ -70,9 +72,39 @@ decision-capture  requirements-from-   execution-trace
 
 ## Installation
 
-This repo is private while the first skills are being shaped.
+Install with the open `skills` CLI:
 
-### Option 1: Clone and copy
+```bash
+npx skills add house-of-giants/projectskills
+```
+
+List available Project Skills without installing:
+
+```bash
+npx skills add house-of-giants/projectskills --list
+```
+
+Install all Project Skills for Claude Code and Codex:
+
+```bash
+npx skills add house-of-giants/projectskills --skill '*' -a claude-code -a codex
+```
+
+Install one skill:
+
+```bash
+npx skills add house-of-giants/projectskills --skill project-context
+```
+
+Install globally:
+
+```bash
+npx skills add house-of-giants/projectskills --skill '*' -g
+```
+
+### Manual install
+
+If you do not want to use the CLI, clone and copy the skills into your project:
 
 ```bash
 git clone https://github.com/house-of-giants/projectskills.git
@@ -80,24 +112,13 @@ mkdir -p .agents/skills
 cp -r projectskills/skills/* .agents/skills/
 ```
 
-### Option 2: Git submodule
+Or keep the collection as a project-local vendor dependency:
 
 ```bash
 git submodule add https://github.com/house-of-giants/projectskills.git .agents/vendor/projectskills
 ```
 
 Then point your agent at `.agents/vendor/projectskills/skills/` or copy selected skills into your agent's skill directory.
-
-### Future install paths
-
-Planned after v0.1:
-
-```bash
-npx skills add house-of-giants/projectskills
-npx skillkit install house-of-giants/projectskills
-```
-
-Claude Code plugin support is planned once the initial skill set stabilizes.
 
 ## Quick start
 
