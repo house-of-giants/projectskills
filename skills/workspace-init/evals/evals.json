@@ -1,0 +1,64 @@
+{
+  "evals": [
+    {
+      "id": "workspace-init-001",
+      "prompt": "Initialize Project Skills in a parent workspace that contains one existing app repo folder named app/ and no .agents/ folder yet.",
+      "expected_output": "Should create .agents/, ops/, scratch/, AGENTS.md, CLAUDE.md, and safe ignore files. Should reference app/ as the implementation repo. Should not move or modify app/.",
+      "assertions": [
+        "Creates parent workspace scaffolding",
+        "Detects single existing repo folder",
+        "Does not move app repo",
+        "Creates AGENTS.md and CLAUDE.md",
+        "Adds local-only ignore rules"
+      ],
+      "files": [
+        "app/.git/"
+      ]
+    },
+    {
+      "id": "workspace-init-002",
+      "prompt": "Initialize Project Skills in a workspace with two repos: web-app/ and api/. Do not guess which one is primary.",
+      "expected_output": "Should list both repo folders and mark implementation repo as TBD or multiple, not choose one silently. Should still create shared workspace scaffolding.",
+      "assertions": [
+        "Detects multiple repo folders",
+        "Does not guess primary repo",
+        "Creates shared workspace scaffolding",
+        "Keeps repo paths as candidates or TBD"
+      ],
+      "files": [
+        "web-app/.git/",
+        "api/.git/"
+      ]
+    },
+    {
+      "id": "workspace-init-003",
+      "prompt": "Initialize Project Skills in an existing workspace with AGENTS.md and .gitignore already present.",
+      "expected_output": "Should update conservatively or append a Project Skills section without overwriting existing instructions. Should add missing ignore patterns only if absent.",
+      "assertions": [
+        "Does not overwrite existing AGENTS.md",
+        "Does not overwrite existing .gitignore",
+        "Appends or patches conservatively",
+        "Adds missing safe ignore patterns"
+      ],
+      "files": [
+        "AGENTS.md",
+        ".gitignore"
+      ]
+    },
+    {
+      "id": "workspace-init-004",
+      "prompt": "Initialize Project Skills for a client project that has raw transcript exports available locally.",
+      "expected_output": "Should create or preserve local-only source locations and ignore raw transcript/export patterns. Should not copy raw transcripts into committed context or ingest them by default.",
+      "assertions": [
+        "Keeps raw transcripts local-only",
+        "Adds raw transcript ignore patterns",
+        "Does not ingest transcript content",
+        "Explains that project-context should record source locations only"
+      ],
+      "files": [
+        "transcripts/call.transcript.txt",
+        "exports/source.raw.json"
+      ]
+    }
+  ]
+}

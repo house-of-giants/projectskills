@@ -50,6 +50,10 @@ Use whatever workspace shape matches how the project actually runs. The context 
 Project Skills use simple top-level `.agents/*.md` context files, matching the convention used by adjacent skill collections. Keep the set small and clearly named rather than adding a deep namespace.
 
 ```text
+                    workspace-init
+             (scaffold workspace once)
+                         │
+                         ▼
                     project-context
               (read by all skills first)
                          │
@@ -67,6 +71,7 @@ decision-capture  requirements-from-   execution-trace
 
 | Skill | Status | Description |
 |---|---:|---|
+| [workspace-init](skills/workspace-init/) | v0.1 draft | Scaffold a parent project workspace with `.agents/`, `ops/`, `scratch/`, `AGENTS.md`, `CLAUDE.md`, and safe ignore rules before project context exists. |
 | [project-context](skills/project-context/) | v0.1 draft | Create and maintain `.agents/project-context.md`, the project-level context all other skills read first. |
 | [decision-capture](skills/decision-capture/) | v0.1 draft | Extract accepted, candidate, deferred, and rejected decisions from transcripts, docs, emails, issues, and notes. |
 | [requirements-from-decisions](skills/requirements-from-decisions/) | v0.1 draft | Turn accepted decisions into functional requirements with acceptance criteria, non-goals, and source refs. |
@@ -124,7 +129,13 @@ Then point your agent at `.agents/vendor/projectskills/skills/` or copy selected
 
 ## Quick start
 
-After installing, ask your agent:
+After installing into a new parent workspace that only has an app/repo folder, initialize the workspace first:
+
+```text
+Use the workspace-init skill to scaffold this parent project workspace. Do not move the existing repo folder.
+```
+
+Then ask your agent:
 
 ```text
 Use the project-context skill to create project context for this project workspace.
