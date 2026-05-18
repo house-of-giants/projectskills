@@ -136,7 +136,7 @@ Or, if you already know where source material lives:
 Use project-context to create .agents/project-context.md for this workspace. Record where transcripts, tickets, docs, and repos live, but do not ingest full transcripts yet.
 ```
 
-See `examples/basic-client-project/` for a small fake example.
+See `examples/basic-client-project/` for a small fake example and `examples/complex-delivery-project/` for a fuller traceability example with candidates, blockers, scope guards, and unaccepted implementation evidence.
 
 To extract decisions from a named source:
 
