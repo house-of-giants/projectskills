@@ -13,7 +13,10 @@
         "Does not convert candidate decisions into committed requirements by default",
         "Keeps open questions visible"
       ],
-      "files": [".agents/project-context.md", ".agents/decisions.md"]
+      "files": [
+        ".agents/project-context.md",
+        ".agents/decisions.md"
+      ]
     },
     {
       "id": "requirements-from-decisions-002",
@@ -26,7 +29,9 @@
         "Preserves source decision IDs",
         "Keeps output structured as markdown"
       ],
-      "files": [".agents/decisions.md"]
+      "files": [
+        ".agents/decisions.md"
+      ]
     },
     {
       "id": "requirements-from-decisions-003",
@@ -39,7 +44,11 @@
         "Cites superseding decision ID",
         "Summarizes changed requirements"
       ],
-      "files": [".agents/project-context.md", ".agents/decisions.md", ".agents/requirements.md"]
+      "files": [
+        ".agents/project-context.md",
+        ".agents/decisions.md",
+        ".agents/requirements.md"
+      ]
     },
     {
       "id": "requirements-from-decisions-004",
@@ -52,7 +61,26 @@
         "Preserves candidate decision IDs",
         "Identifies confirmation needs"
       ],
-      "files": [".agents/project-context.md", ".agents/decisions.md"]
+      "files": [
+        ".agents/project-context.md",
+        ".agents/decisions.md"
+      ]
+    },
+    {
+      "id": "requirements-from-decisions-005",
+      "prompt": "Create requirements from accepted decisions and include useful candidate-derived draft ideas. The output will feed an execution trace.",
+      "expected_output": "Should use committed requirements only for accepted decisions, separate candidate-derived ideas as PREQ/proposed requirements, include a status legend, and use an unambiguous status like Requirement ready rather than bare Ready.",
+      "assertions": [
+        "Committed requirements come from accepted decisions",
+        "Candidate-derived items are separated as proposed requirements",
+        "Includes requirement status legend",
+        "Avoids bare Ready status",
+        "Includes TBD for unknown execution or verification evidence"
+      ],
+      "files": [
+        ".agents/project-context.md",
+        ".agents/decisions.md"
+      ]
     }
   ]
 }

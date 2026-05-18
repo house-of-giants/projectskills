@@ -12,7 +12,10 @@
         "Does not treat 'probably useful, not today' as accepted",
         "Preserves source reference"
       ],
-      "files": [".agents/project-context.md", "transcripts/kickoff-excerpt.md"]
+      "files": [
+        ".agents/project-context.md",
+        "transcripts/kickoff-excerpt.md"
+      ]
     },
     {
       "id": "decision-capture-002",
@@ -25,7 +28,9 @@
         "Preserves uncertainty",
         "Avoids inventing approval"
       ],
-      "files": ["transcripts/latest.md"]
+      "files": [
+        "transcripts/latest.md"
+      ]
     },
     {
       "id": "decision-capture-003",
@@ -38,7 +43,11 @@
         "Does not silently delete prior decisions",
         "Cites the follow-up email source"
       ],
-      "files": [".agents/project-context.md", ".agents/decisions.md", "emails/follow-up.md"]
+      "files": [
+        ".agents/project-context.md",
+        ".agents/decisions.md",
+        "emails/follow-up.md"
+      ]
     },
     {
       "id": "decision-capture-004",
@@ -51,7 +60,24 @@
         "Separates accepted/candidate/deferred/open items",
         "Produces compact structured markdown"
       ],
-      "files": [".agents/project-context.md", "transcripts/"]
+      "files": [
+        ".agents/project-context.md",
+        "transcripts/"
+      ]
+    },
+    {
+      "id": "decision-capture-005",
+      "prompt": "Capture decisions from a local decision-log index updated 2026-05-11. The index lists canonical DL-001 and DL-002 but does not show original decision dates or named approvers.",
+      "expected_output": "Should preserve DL-001 and DL-002. Should use the canonical decision log as owner/approver rather than inventing a named approver. Should label dates as canonical-source dates unknown or local index updated 2026-05-11, not as the original decision dates.",
+      "assertions": [
+        "Preserves canonical DL IDs",
+        "Does not invent named approvers",
+        "Distinguishes index/export date from decision date",
+        "Keeps uncertainty visible"
+      ],
+      "files": [
+        "ops/01-decision-log.md"
+      ]
     }
   ]
 }

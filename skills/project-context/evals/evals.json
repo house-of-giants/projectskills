@@ -39,7 +39,24 @@
         "Summarizes changed sections",
         "Avoids unrelated rewrites"
       ],
-      "files": [".agents/project-context.md"]
+      "files": [
+        ".agents/project-context.md"
+      ]
+    },
+    {
+      "id": "project-context-004",
+      "prompt": "Create project context from local exported ops docs and local repo inspection. Live Linear and GitHub may have changed since the export.",
+      "expected_output": "Should include a freshness warning that local snapshots and repo inspection are routing context, not live truth. Should say to verify live Linear/GitHub before claiming current status, acceptance, blockers, or delivery readiness.",
+      "assertions": [
+        "Includes freshness warning",
+        "Distinguishes local snapshots from live truth",
+        "Requires live verification before status or acceptance claims",
+        "Keeps output structured as markdown"
+      ],
+      "files": [
+        "ops/",
+        "app/package.json"
+      ]
     }
   ]
 }

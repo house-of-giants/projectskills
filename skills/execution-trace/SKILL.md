@@ -47,6 +47,7 @@ If it exists:
 2. Identify execution tracker, repository / PR workflow, review rules, source systems, and delivery closeout expectations.
 3. Follow the project’s stated tracker and repo conventions.
 4. Do not invent tracker URLs, repo names, PRs, or review rules.
+5. If the requested skill path is missing but a vendor copy is used, record that as an installation/source gap rather than silently proceeding.
 
 If it does not exist:
 
@@ -106,6 +107,7 @@ Rules:
 - Do not claim a requirement is complete without linked evidence.
 - If a ticket exists but no PR or verification exists, mark the requirement as `In progress` or `Needs verification`.
 - If a PR merged but no acceptance evidence exists, mark it as `Implemented / pending verification`.
+- If implementation and tests exist but expected PR/check/client evidence was not independently verified, mark it as `Implemented / pending verification` or `Needs verification` and add a gap for unverified live evidence.
 - If shipped but not client-reviewed, mark it as `Shipped / pending review`.
 - If no ticket/PR exists, mark it as `Unlinked`.
 - If open questions block a requirement, mark it as `Blocked` and cite the question IDs.
@@ -125,6 +127,18 @@ Last updated: YYYY-MM-DD
 
 | Source | Type | Date / range | Location | Notes |
 |---|---|---|---|---|
+
+## Trace status legend
+
+- `Unlinked`: no issue, PR, commit, test, demo, or review evidence found.
+- `Planned`: tracker evidence exists, but implementation evidence is not present.
+- `In progress`: active tracker, branch, or PR evidence exists.
+- `Implemented / pending verification`: implementation evidence exists, but verification or review is incomplete.
+- `Needs verification`: evidence is partial, stale, unverified, or missing an expected review/check.
+- `Shipped / pending review`: release, demo, or handoff evidence exists, but reviewer/client review is missing.
+- `Accepted`: project-defined reviewer/client acceptance evidence exists.
+- `Blocked`: open dependency prevents completion.
+- `Superseded`: requirement was replaced by a later decision/requirement.
 
 ## Requirement trace
 
@@ -146,25 +160,18 @@ Last updated: YYYY-MM-DD
 | ID | Requirement | Gap | Owner | Status | Notes |
 |---|---|---|---|---|---|
 
+## Local command outputs
+
+Use this section only when local checks were run during the trace. Keep it concise: command, result, date, and a short summary. Do not paste large raw logs.
+
+| Command | Result | Date | Notes |
+|---|---|---|---|
+
 ## Change log
 
 | Date | Change | Source |
 |---|---|---|
 ```
-
-Trace status labels:
-
-| Status | Meaning |
-|---|---|
-| Unlinked | No tracker, PR, or evidence found yet. |
-| Planned | Tracker exists but implementation has not started. |
-| In progress | Work appears active but incomplete. |
-| Implemented / pending verification | Code or artifact exists, but verification is missing. |
-| Needs verification | Some evidence exists, but acceptance criteria are not fully checked. |
-| Blocked | Open question, dependency, or missing decision blocks progress. |
-| Shipped / pending review | Delivered but not yet accepted by reviewer/client. |
-| Accepted | Evidence and required review/approval exist. |
-| Superseded | Requirement was replaced by a later decision/requirement. |
 
 Evidence ID format:
 
@@ -190,10 +197,13 @@ After writing or updating the trace, summarize:
 - Read `.agents/project-context.md` before `.agents/requirements.md` when available.
 - Preserve requirement IDs in every trace row.
 - Preserve tracker IDs, PR numbers, commit SHAs, check names, release tags, and demo/review links when available.
+- Distinguish local git evidence from live PR/check verification. PR numbers found in merge commits or tracker attachments are not the same as independently verified PR content/check results.
 - Do not invent ticket IDs, PRs, commits, checks, or review outcomes.
 - Do not claim acceptance unless the project’s review rule is satisfied.
 - Do not mark code as complete just because a PR exists.
 - If evidence conflicts, mark the trace as `Needs verification` or `Blocked` and explain the conflict.
+- Be precise when citing schema/test evidence. If a test rejects an unsupported node type, do not word it as rejecting a similarly named valid payload or field unless the evidence proves that exact claim.
+- Assign source-verification gaps to the operator/system that can verify them, not automatically to a person named in the project context.
 - Keep future polish or out-of-scope work separate from requirement gaps.
 
 ## Output standard
@@ -213,6 +223,7 @@ Formatting rules:
 - Use markdown tables for trace categories.
 - Keep each row short; link to evidence instead of copying logs.
 - Use stable status labels from this skill.
+- Preserve the requirement's own status as written, but prefer unambiguous requirement statuses such as `Requirement ready` over bare `Ready` when updating requirements as part of trace hygiene.
 - Keep requirement IDs inline in every relevant row.
 
 ## Common pitfalls
@@ -220,6 +231,8 @@ Formatting rules:
 - Claiming completion from a ticket status alone.
 - Claiming acceptance without reviewer/client evidence.
 - Treating merged PRs as verified requirements.
+- Treating locally observed PR numbers as live GitHub verification.
+- Using broad evidence wording that accidentally rules out valid payloads, fields, or future scope.
 - Losing requirement IDs when summarizing delivery.
 - Mixing future polish with blocked requirement gaps.
 - Turning non-goals into implementation tasks.
@@ -235,6 +248,8 @@ Before finishing:
 - [ ] Tracker/PR/commit/check evidence is linked when available.
 - [ ] Completion is not claimed without evidence.
 - [ ] Client/reviewer acceptance is not claimed without review evidence.
+- [ ] Live tracker/PR/check verification gaps are explicit when only local git or local tests were available.
+- [ ] Scope guard evidence is worded narrowly enough not to reject valid adjacent schema/payload concepts.
 - [ ] Blockers and gaps are visible.
 - [ ] Existing evidence IDs were preserved on update.
 ```

@@ -9,6 +9,10 @@ Fake client portal project for customer support request intake and account docum
 
 The first milestone should prove one intake path for support requests and basic document upload. The project should not expand into a full CRM rebuild.
 
+## Freshness warning
+
+This fake example is built from a static transcript excerpt and placeholder tracker/repo locations. Before claiming current ticket status, PR status, delivery readiness, or client acceptance in a real project, verify the live tracker, repository, checks, and reviewer/client messages.
+
 ## Stakeholders and roles
 
 | Person | Role | Notes |
@@ -79,6 +83,14 @@ For each shipped milestone, record:
 | Execution evidence | Linked Linear issues, GitHub PRs, commits, checks, screenshots, or demo notes. |
 | Deferred / open | What remains open, blocked, or intentionally out of scope. |
 | Client review | Who reviewed and what was accepted. |
+
+## Execution trace rules
+
+- `Accepted` requires Mira/Jordan review evidence or the project's agreed acceptance rule.
+- Linear issue status, GitHub PR status, or local implementation evidence does not by itself prove acceptance.
+- Missing issue/PR/check/demo/review evidence should become `Unlinked`, `Needs verification`, or a visible gap in execution trace work.
+- Open questions should mark affected requirements as blocked or partial.
+- Non-goals and constraints should be tracked as scope guards, not implementation tasks.
 
 ## Constraints and non-goals
 

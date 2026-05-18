@@ -68,7 +68,7 @@ If it exists:
 
 1. Read it after project context.
 2. Use `Accepted decisions` as the default source set.
-3. Treat `Candidate decisions`, `Deferred / rejected decisions`, and `Open questions` as constraints, blockers, or future-work notes — not as implementation requirements.
+3. Treat `Candidate decisions`, `Deferred / rejected decisions`, and `Open questions` as constraints, blockers, proposed requirements, or future-work notes — not as committed implementation requirements.
 4. Preserve decision IDs as source refs.
 
 If it does not exist:
@@ -108,8 +108,12 @@ Rules:
 - Scope decisions and non-goals should become constraints or non-goals.
 - Workflow decisions should become review/execution rules only if useful for implementation.
 - Candidate decisions should not become requirements unless the user explicitly asks for draft/proposed requirements.
-- Open questions should stay open and should mark affected requirements as blocked or incomplete.
+- Open questions should stay open and should mark affected requirements as blocked, partial, or needing verification when they affect acceptance.
 - Requirements should be testable enough for later ticketing or PR review.
+- Use explicit requirement statuses that cannot be confused with implementation or acceptance. Prefer `Requirement ready` or `Ready for execution trace` over a bare `Ready`.
+- If a requirement represents a demo, preview, migration, or closeout path rather than core product behavior, name it that way in the requirement statement and status.
+- When candidate-derived ideas are included because the user asked or they are useful, put them in a separate `Proposed requirements from candidates` section with `PREQ-*` IDs and needed-confirmation notes.
+- Split combined proposed requirements when one part is a blocker/source dependency and another part is UX polish or implementation detail.
 
 ### Step 5: Write or update `.agents/requirements.md`
 
@@ -126,10 +130,26 @@ Last updated: YYYY-MM-DD
 | Source | Type | Date | Location | Notes |
 |---|---|---|---|---|
 
+## Requirement status legend
+
+- `Requirement ready`: source-linked requirement ready for trace, ticketing, or review; not implemented or accepted.
+- `Blocked`: open question or source dependency prevents completion.
+- `Proposed`: candidate-derived requirement that is not accepted scope.
+- `Verified`: implementation/verification evidence exists; client or reviewer acceptance may still be separate.
+- `Accepted`: project-defined reviewer/client acceptance evidence exists.
+- `Superseded`: replaced by a later decision or requirement.
+
 ## Functional requirements
 
-| ID | Requirement | Source decision | Actor | Acceptance criteria | Reviewer | Status |
-|---|---|---|---|---|---|---|
+| ID | Source decision refs | Actor / user | Requirement statement | Acceptance criteria | Non-goals / scope guards | Reviewer / approver | Execution target | Verification evidence | Status |
+|---|---|---|---|---|---|---|---|---|---|
+
+## Proposed requirements from candidates
+
+These are useful candidate-derived drafts, not accepted requirements. Promote only after the project-defined reviewer confirms them or a canonical decision source is updated.
+
+| ID | Source candidate / question | Proposed requirement | Needed confirmation | Affected committed requirement |
+|---|---|---|---|---|
 
 ## Non-goals and constraints
 
@@ -164,7 +184,7 @@ ID format:
 
 Acceptance criteria format:
 
-Use concise semicolon-separated checks inside the table for simple requirements. If a requirement needs more detail, add a short subsection below the table:
+Use concise semicolon-separated checks inside the table for simple requirements. Include execution target and verification evidence as `TBD` when unknown instead of inventing issue IDs, PRs, checks, or reviews. If a requirement needs more detail, add a short subsection below the table:
 
 ```markdown
 ### REQ-001 — Short title
@@ -185,7 +205,7 @@ After writing or updating requirements, summarize:
 - decision IDs used
 - requirements created or updated
 - non-goals / constraints captured
-- candidate decisions intentionally excluded
+- candidate decisions intentionally excluded or separated as `PREQ-*`
 - open questions blocking requirements
 - recommended next skill, if useful
 
@@ -194,7 +214,7 @@ After writing or updating requirements, summarize:
 - Read `.agents/project-context.md` before `.agents/decisions.md` when available.
 - Preserve source decision IDs in every requirement row.
 - Do not cite transcripts directly if an accepted decision already captures the transcript source; cite the decision ID instead.
-- Do not turn candidate decisions into committed requirements by default.
+- Do not turn candidate decisions into committed requirements by default; keep them in `Proposed requirements from candidates` when useful.
 - Do not hide open questions by writing vague acceptance criteria.
 - Do not invent actors, reviewers, execution trackers, or acceptance criteria. Mark missing detail as `TBD` or add an open requirement question.
 - If a later decision supersedes an earlier decision, update or mark affected requirements instead of silently deleting them.
@@ -215,7 +235,7 @@ Formatting rules:
 - Use the section headings from the template unless the user requests a different structure.
 - Use markdown tables for requirement categories.
 - Keep each row short; add detail subsections only when necessary.
-- Use stable status labels: `Draft`, `Ready`, `Blocked`, `Accepted`, `Superseded`.
+- Use stable status labels from the requirement status legend. Avoid bare `Ready`; use `Requirement ready` so downstream agents do not confuse requirement readiness with implementation or acceptance.
 - Keep source decision refs inline in each row.
 
 ## Common pitfalls
@@ -226,6 +246,8 @@ Formatting rules:
 - Inventing acceptance criteria that were not supported by decisions or project context.
 - Creating tickets before requirements are reviewable.
 - Hiding open questions inside vague requirement language.
+- Labeling a preview/demo path as generic product acceptance.
+- Combining unrelated candidate ideas into one proposed requirement when they have different blockers or confirmation paths.
 - Duplicating rejected scope as future work instead of recording it as a non-goal.
 
 ## Verification checklist
@@ -238,6 +260,8 @@ Before finishing:
 - [ ] Candidate/deferred/open items were kept separate unless explicitly requested.
 - [ ] Every requirement has a source decision or source marked `TBD`.
 - [ ] Non-goals and constraints are visible.
+- [ ] Requirement statuses use `Requirement ready`, `Blocked`, `Proposed`, `Verified`, `Accepted`, or `Superseded` rather than ambiguous bare `Ready`.
+- [ ] Candidate-derived items, if included, are separated as proposed requirements and not mixed into committed requirements.
 - [ ] Open requirement questions are visible.
 - [ ] Existing IDs were preserved on update.
 ```

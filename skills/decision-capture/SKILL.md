@@ -87,6 +87,9 @@ Rules:
 - Treat explicit exclusions as accepted non-goal decisions when the source clearly confirms them.
 - Keep open questions separate from decisions.
 - Preserve uncertainty instead of smoothing it away.
+- Do not infer a historical decision's approver from the current project context. If a canonical decision log is the only reviewed source, use the canonical log as owner/approver and avoid claiming a named person approved it unless the source says so.
+- Distinguish decision dates from index/export dates. If a local index only shows when it was updated, write `See canonical source; local index updated YYYY-MM-DD` rather than presenting the index date as the decision date.
+- Include adjacent accepted decisions only when they materially affect the requested scope. For example, if an editor decision touches persisted node creation or software configuration, include accepted schema decisions for node IDs or software field shape; do not broaden into unrelated scope.
 
 ### Step 4: Write or update `.agents/decisions.md`
 
@@ -102,6 +105,8 @@ Last updated: YYYY-MM-DD
 
 | Source | Type | Date | Location | Notes |
 |---|---|---|---|---|
+
+If a source was requested but unavailable, include a source row or note that it was not reviewed. Make the note narrow to this run so it does not age into a permanent fact.
 
 ## Accepted decisions
 
@@ -131,7 +136,8 @@ Last updated: YYYY-MM-DD
 
 ID format:
 
-- Use `D-001`, `D-002`, etc. for accepted decisions.
+- Use existing canonical IDs when present, such as `DL-001`, ADR IDs, Jira IDs, or signed decision-log anchors.
+- Use `D-001`, `D-002`, etc. for accepted decisions only when there is no existing canonical ID.
 - Use `C-001`, `C-002`, etc. for candidate decisions.
 - Use `X-001`, `X-002`, etc. for deferred/rejected/superseded decisions.
 - Use `Q-001`, `Q-002`, etc. for open questions.
@@ -160,6 +166,7 @@ After writing or updating decisions, summarize:
 - Do not treat a transcript as authoritative if later email, issue, or approval notes supersede it.
 - If two sources conflict, mark the item as candidate or open until resolved.
 - If a decision affects scope, requirements, acceptance, pricing, timeline, privacy, security, or client approval, make that visible in notes.
+- If implementation direction appears useful but is more specific than accepted decisions, keep it as a candidate and state what confirmation would promote it.
 
 ## Output standard
 
@@ -178,6 +185,7 @@ Formatting rules:
 - Use markdown tables for all decision categories.
 - Keep each row short; move nuance into notes only when needed.
 - Use stable status labels: `Accepted`, `Candidate`, `Deferred`, `Rejected`, `Superseded`, `Open`, `Resolved`.
+- Use date wording that preserves source confidence: `YYYY-MM-DD` for known decision dates, `Indexed YYYY-MM-DD` or `See canonical source; local index updated YYYY-MM-DD` for index/export dates.
 - Keep source refs inline in the row.
 
 ## Common pitfalls
@@ -201,5 +209,7 @@ Before finishing:
 - [ ] Open questions are separate from decisions.
 - [ ] Source refs are present or marked `TBD`.
 - [ ] Existing IDs were preserved on update.
+- [ ] Canonical IDs and canonical-log authority were preserved without inventing named approvers.
+- [ ] Index/export dates were not represented as decision dates unless the source supports that.
 - [ ] No large raw transcript excerpts were copied accidentally.
 ```

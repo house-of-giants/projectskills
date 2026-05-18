@@ -13,7 +13,10 @@
         "Marks missing execution artifacts as Unlinked",
         "Does not invent tickets, PRs, commits, checks, or reviews"
       ],
-      "files": [".agents/project-context.md", ".agents/requirements.md"]
+      "files": [
+        ".agents/project-context.md",
+        ".agents/requirements.md"
+      ]
     },
     {
       "id": "execution-trace-002",
@@ -26,7 +29,11 @@
         "Creates or updates a gap for missing QA/client review",
         "Preserves REQ-001"
       ],
-      "files": [".agents/project-context.md", ".agents/requirements.md", ".agents/execution-trace.md"]
+      "files": [
+        ".agents/project-context.md",
+        ".agents/requirements.md",
+        ".agents/execution-trace.md"
+      ]
     },
     {
       "id": "execution-trace-003",
@@ -39,7 +46,10 @@
         "Adds visible blocker/gap rows",
         "Preserves requirement ID"
       ],
-      "files": [".agents/project-context.md", ".agents/requirements.md"]
+      "files": [
+        ".agents/project-context.md",
+        ".agents/requirements.md"
+      ]
     },
     {
       "id": "execution-trace-004",
@@ -52,7 +62,27 @@
         "Marks missing evidence as TBD rather than inventing it",
         "Preserves non-goal IDs"
       ],
-      "files": [".agents/project-context.md", ".agents/requirements.md", ".agents/execution-trace.md"]
+      "files": [
+        ".agents/project-context.md",
+        ".agents/requirements.md",
+        ".agents/execution-trace.md"
+      ]
+    },
+    {
+      "id": "execution-trace-005",
+      "prompt": "Trace REQ-001. Local git merge commits reference PR #42 and tests pass, but live GitHub PR content/checks and client review were not verified.",
+      "expected_output": "Should cite local git/test evidence, should not claim live PR/check verification, should add a gap for unverified GitHub/client review evidence, and should not mark the requirement Accepted.",
+      "assertions": [
+        "Distinguishes local git evidence from live PR verification",
+        "Records local test evidence",
+        "Adds gap for unverified live GitHub/checks or client review",
+        "Does not mark Accepted",
+        "Uses trace status legend labels"
+      ],
+      "files": [
+        ".agents/project-context.md",
+        ".agents/requirements.md"
+      ]
     }
   ]
 }

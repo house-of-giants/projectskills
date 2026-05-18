@@ -102,17 +102,21 @@ Default behavior: identify where transcripts live and what role they play; do no
 Required sections:
 
 1. Project overview
-2. Stakeholders and roles
-3. Source systems
-4. Decision log
-5. Requirement format
-6. Execution tracker
-7. Repository / PR workflow
-8. Review and approval rules
-9. Delivery closeout expectations
-10. Constraints and non-goals
-11. Project vocabulary
-12. Open questions
+2. Freshness warning
+3. Stakeholders and roles
+4. Source systems
+5. Decision log
+6. Requirement format
+7. Execution tracker
+8. Repository / PR workflow
+9. Review and approval rules
+10. Delivery closeout expectations
+11. Execution trace rules
+12. Constraints and non-goals
+13. Project vocabulary
+14. Open questions
+
+If the context is generated from local snapshots, local repo inspection, exported docs, or stale mirrors, include a `## Freshness warning` that says which facts must be re-verified before status, acceptance, blocker, or delivery claims. If the project has live systems such as Linear, GitHub, Jira, email, or CI, make clear that local snapshots are routing context, not current truth.
 
 ### Step 3: Write `.agents/project-context.md`
 
@@ -125,6 +129,8 @@ Status: active
 Last updated: YYYY-MM-DD
 
 ## Project overview
+
+## Freshness warning
 
 ## Stakeholders and roles
 
@@ -144,6 +150,14 @@ Last updated: YYYY-MM-DD
 ## Review and approval rules
 
 ## Delivery closeout expectations
+
+## Execution trace rules
+
+- `Accepted` requires the project-defined reviewer/client approval or acceptance evidence.
+- Merged PRs, closed tickets, and local implementation evidence do not by themselves prove acceptance.
+- Missing ticket/PR/check/demo/review evidence should become `Unlinked`, `Needs verification`, or a visible gap in execution trace work.
+- Open source dependencies or unanswered requirement questions should mark affected requirements as blocked or partial.
+- Non-goals and constraints should be tracked as scope guards, not implementation tasks.
 
 ## Constraints and non-goals
 
@@ -170,6 +184,7 @@ After creating or updating the file, summarize:
 - Do not read full transcripts just because a transcript folder or link exists. Treat transcript locations as source-system references unless transcript extraction is the task.
 - Do not treat meeting notes as accepted decisions unless the notes say they were accepted or the user confirms.
 - Do not invent stakeholders, trackers, repos, requirements, or approval rules.
+- If a named approver/reviewer is explicit in the user's context or source material, record that named role/person directly instead of leaving a redundant `TBD` question. If authority is only implied, keep it role-based and mark it `TBD`.
 - If a project uses a canonical decision log, point to it instead of creating a competing one.
 - If a project does not use a formal decision log, capture the current decision source locations instead of pretending one exists.
 - Do not assume decision logs, transcripts, or project notes belong inside the production repository.
@@ -193,6 +208,8 @@ Formatting rules:
 - Keep source links inline in the relevant row or bullet; do not collect them in a disconnected appendix.
 - Keep entries concise enough for another agent to parse and update safely.
 - Keep the context file as an index and operating guide, not a source-material digest.
+- When local skills or agent instructions are part of the workspace, list their stable path as a source system or operating source so future agents can load the same workflow.
+- Avoid ambiguous requirement or trace statuses such as bare `Ready` when they could be mistaken for implemented or accepted state; use phrases like `Requirement ready` or `Ready for execution trace` when needed.
 
 ## Common pitfalls
 
@@ -212,6 +229,7 @@ Before finishing:
 
 - [ ] `.agents/project-context.md` exists or the user declined creation.
 - [ ] Source systems are listed.
+- [ ] A freshness warning is included when any current-state facts came from local snapshots, local inspection, or exported docs.
 - [ ] Decision log location is explicit or marked `TBD`.
 - [ ] Requirement format is explicit or marked `TBD`.
 - [ ] Execution tracker is explicit or marked `TBD`.
